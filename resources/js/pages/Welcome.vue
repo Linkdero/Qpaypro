@@ -104,6 +104,7 @@ const processDonation = async () => {
                 showConfirmButton: false,
                 timer: 1500
             });
+            window.location.href = `https://sandboxpayments.qpaypro.com/checkout/store?token=${response.data.data.token}`;
         } else {
             const resultadoGuardado = await setGuardarInformacion(0);
             await Swal.fire({

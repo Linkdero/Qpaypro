@@ -39,4 +39,17 @@ class TransaccionController extends Controller
             'id_transaccion' => $transaccion->id_transaccion
         ]);
     }
+
+    public function getAllTransacciones(Request $request)
+    {
+        $query = Transaccion::query();
+
+        if ($request->has('estado') && $request->estado != 2) {
+            $query->where('estado', $request->estado);
+        }
+
+        $transacciones = $query->orderBy('fecha', 'desc')->get();
+
+        return response()->json($transacciones);
+    }
 }
